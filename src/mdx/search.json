@@ -1,0 +1,171 @@
+[
+  {
+    "url": "/",
+    "sections": [
+      [
+        "Netpick",
+        null,
+        [
+          "The All-in-One Marketing & Business Automation Platform. ",
+          "Inspired by modular architectures like Odoo, Netpick provides a comprehensive suite of modules for business management and automation. It is designed to be an integrated and extensible ecosystem where modules seamlessly interact with each other—covering CRM, Lead Management, Campaigns, and more.",
+          "Explore MailMine",
+          "GitHub Profile"
+        ]
+      ],
+      [
+        "About Netpick ",
+        "about-netpick",
+        [
+          "Netpick is built on the philosophy of modularity. Just like building blocks, you can use modules independently or combine them to create a powerful, unified system for your business.",
+          "The goal is to create a seamless experience where data flows freely between different parts of your operations, from gathering leads to managing customer relationships and executing marketing campaigns."
+        ]
+      ],
+      [
+        "Modules ",
+        "modules",
+        [
+          "MailMine",
+          "MailMine is the first module in the Netpick family. Developed as a standalone product, it serves as a powerful web scraping and lead generation tool.",
+          "In the future, MailMine will be available as an installable module within the Netpick ecosystem, allowing retrieved leads to be directly fed into your Netpick CRM and marketing pipelines.",
+          "Learn more about MailMine"
+        ]
+      ]
+    ]
+  },
+  {
+    "url": "/mailmine",
+    "sections": [
+      [
+        "MailMine",
+        null,
+        [
+          "The Ultimate Web Scraping & Lead Generation Platform.",
+          "MailMine is a sophisticated web scraping and lead generation solution designed to streamline the process of gathering business intelligence. Whether you are a marketer looking for leads, a recruiter finding candidates, or a data analyst gathering insights, MailMine provides the tools to automate the extraction of emails, links, and contact information from the web."
+        ]
+      ],
+      [
+        "Key Features ",
+        "key-features",
+        [
+          "Advanced Web Scraping: Powered by Jsoup and Selenium to handle complex websites.",
+          "Smart Query Generation: Automatically generate search queries tailored to specific industries and roles.",
+          "Interactive Dashboard: Visualize your scraping jobs, success rates, and data collection in real-time.",
+          "Secure Authentication: Enterprise-grade security with JWT tokens and role-based access control.",
+          "High Performance: Asynchronous processing for handling multiple scraping jobs simultaneously.",
+          "Responsive Design: Fully responsive admin panel built with the latest Tailwind CSS."
+        ]
+      ],
+      [
+        "Built With ",
+        "built-with",
+        [
+          "This project is built using a modern, robust tech stack ensuring scalability and performance.",
+          "Spring Boot",
+          "Next.js",
+          "React",
+          "TypeScript",
+          "TailwindCSS",
+          "Java"
+        ]
+      ]
+    ]
+  },
+  {
+    "url": "/other-projects",
+    "sections": [
+      [
+        "Other Projects",
+        null,
+        [
+          "More documentation for other HKH-soft projects will be added here soon.",
+          "Check out our GitHub profile for more."
+        ]
+      ]
+    ]
+  },
+  {
+    "url": "/mailmine/api-reference",
+    "sections": [
+      [
+        "API Reference",
+        null,
+        []
+      ],
+      [
+        "Overview ",
+        "overview",
+        [
+          "The MailMine backend exposes a RESTful API for managing scraping jobs, users, and data.",
+          "Documentation coming soon."
+        ]
+      ]
+    ]
+  },
+  {
+    "url": "/mailmine/architecture",
+    "sections": [
+      [
+        "Architecture",
+        null,
+        []
+      ],
+      [
+        "Project Structure ",
+        "project-structure",
+        []
+      ]
+    ]
+  },
+  {
+    "url": "/mailmine/getting-started",
+    "sections": [
+      [
+        "Getting Started",
+        null,
+        [
+          "To get a local copy up and running, follow these simple steps."
+        ]
+      ],
+      [
+        "Prerequisites ",
+        "prerequisites",
+        [
+          "Ensure you have the following installed on your system:",
+          "Java JDK 21+ (Backend requirement)",
+          "Node.js 18+ (Frontend requirement)",
+          "PostgreSQL 15+ (Database)",
+          "Maven (Optional, wrapper provided)",
+          "npm or yarn (Package manager for frontend)"
+        ]
+      ],
+      [
+        "Installation ",
+        "installation",
+        [
+          "Clone the repo",
+          "Backend Setup",
+          "The backend API will be available at http://localhost:8080",
+          "Frontend Setup",
+          "The frontend will be available at http://localhost:3000",
+          "Database Setup",
+          "Create a PostgreSQL database named mailmine",
+          "Update Backend/src/main/resources/application.yml with your database credentials",
+          "Flyway migrations will run automatically on startup",
+          "Access the App\r\nOpen your browser and navigate to http://localhost:3000."
+        ]
+      ],
+      [
+        "Usage ",
+        "usage",
+        [
+          "Secure Sign In",
+          "Access your dashboard securely. The system supports persistent login sessions.",
+          "Managing Scrape Pipelines",
+          "Navigate to the Scrape section.",
+          "Then in Control select what part of the scraping you want to start.",
+          "Monitor the progress in real-time on the dashboard."
+        ]
+      ]
+    ]
+  }
+]

@@ -2,9 +2,10 @@
   "name": "wikipick",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "node scripts/build-search.mjs && next dev --webpack",
+    "build": "node scripts/build-search.mjs && next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",

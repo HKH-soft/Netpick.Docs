@@ -29,6 +29,8 @@ function rehypeShiki() {
       })
     }
 
+    let nodesToProcess = []
+
     visit(tree, 'element', (node) => {
       if (node.tagName === 'pre' && node.children[0]?.tagName === 'code') {
         let codeNode = node.children[0]
@@ -37,21 +39,25 @@ function rehypeShiki() {
         node.properties.code = textNode.value
 
         if (node.properties.language) {
-          let tokens = highlighter.codeToTokens(
-            textNode.value,
-            { lang: node.properties.language, theme: 'css-variables' }
-          )
-
-          textNode.value = renderToHtml(tokens.tokens, {
-            elements: {
-              pre: ({ children }) => children,
-              code: ({ children }) => children,
-              line: ({ children }) => `<span>${children}</span>`,
-            },
-          })
+          nodesToProcess.push({ node, textNode })
         }
       }
     })
+
+    for (let { node, textNode } of nodesToProcess) {
+      let tokens = await highlighter.codeToTokens(
+        textNode.value,
+        { lang: node.properties.language, theme: 'css-variables' }
+      )
+
+      textNode.value = renderToHtml(tokens.tokens, {
+        elements: {
+          pre: ({ children }) => children,
+          code: ({ children }) => children,
+          line: ({ children }) => `<span>${children}</span>`,
+        },
+      })
+    }
   }
 }
 
