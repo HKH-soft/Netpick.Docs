@@ -47,7 +47,6 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
-    "@cloudflare/workerd-windows-64": "^1.20251205.0",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
     "prettier": "^3.7.4",
