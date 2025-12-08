@@ -1,0 +1,73 @@
+export const metadata = {
+  title: 'Getting Started - MailMine',
+  description: 'How to get started with MailMine.',
+}
+
+export const sections = [
+  { title: 'Prerequisites', id: 'prerequisites' },
+  { title: 'Installation', id: 'installation' },
+  { title: 'Usage', id: 'usage' },
+]
+
+# Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+## Prerequisites {{ anchor: false }}
+
+Ensure you have the following installed on your system:
+
+*   Java JDK 21+ (Backend requirement)
+*   Node.js 18+ (Frontend requirement)
+*   PostgreSQL 15+ (Database)
+*   Maven (Optional, wrapper provided)
+*   npm or yarn (Package manager for frontend)
+
+## Installation {{ anchor: false }}
+
+1.  **Clone the repo**
+
+    ```bash
+    git clone https://github.com/HKH-soft/Netpick.MailMine.git
+    ```
+
+2.  **Backend Setup**
+
+    ```bash
+    cd Backend
+    # Configure database in src/main/resources/application.yml
+    # Update PostgreSQL connection settings
+    ./mvnw spring-boot:run
+    ```
+    The backend API will be available at `http://localhost:8080`
+
+3.  **Frontend Setup**
+
+    ```bash
+    cd Frontend
+    npm install
+    # Configure API endpoint if needed
+    npm run dev
+    ```
+    The frontend will be available at `http://localhost:3000`
+
+4.  **Database Setup**
+
+    *   Create a PostgreSQL database named `mailmine`
+    *   Update `Backend/src/main/resources/application.yml` with your database credentials
+    *   Flyway migrations will run automatically on startup
+
+5.  **Access the App**
+    Open your browser and navigate to `http://localhost:3000`.
+
+## Usage {{ anchor: false }}
+
+### Secure Sign In
+
+Access your dashboard securely. The system supports persistent login sessions.
+
+### Managing Scrape Pipelines
+
+1.  Navigate to the Scrape section.
+2.  Then in Control select what part of the scraping you want to start.
+3.  Monitor the progress in real-time on the dashboard.

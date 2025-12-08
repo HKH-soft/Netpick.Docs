@@ -79,11 +79,24 @@ const FeedbackThanks = forwardRef(function FeedbackThanks(
 export function Feedback() {
   let [submitted, setSubmitted] = useState(false)
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault()
+    let response = event.nativeEvent.submitter.dataset.response
 
-    // event.nativeEvent.submitter.dataset.response
-    // => "yes" or "no"
+    try {
+      await fetch('/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pathname: window.location.pathname,
+          helpful: response === 'yes',
+        }),
+      })
+    } catch (error) {
+      console.error('Failed to submit feedback:', error)
+    }
 
     setSubmitted(true)
   }

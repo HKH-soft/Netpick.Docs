@@ -1,0 +1,38 @@
+export const metadata = {
+  title: 'Architecture - MailMine',
+  description: 'Architecture overview of MailMine.',
+}
+
+export const sections = [
+  { title: 'Project Structure', id: 'project-structure' },
+]
+
+# Architecture
+
+## Project Structure {{ anchor: false }}
+
+```
+MailMine/
+├── Backend/                 # Spring Boot backend application
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/        # Java source code
+│   │   │   │   └── ir/netpick/mailmine/
+│   │   │   │       ├── auth/           # Authentication & JWT
+│   │   │   │       ├── scrape/         # Web scraping logic
+│   │   │   │       ├── email/          # Email handling
+│   │   │   │       └── ai/             # AI integration (Gemini)
+│   │   │   └── resources/
+│   │   │       ├── application.yml     # Configuration
+│   │   │       └── db/migration/       # Flyway migrations
+│   │   └── test/             # Unit and integration tests
+│   └── pom.xml              # Maven dependencies
+├── Frontend/                # Next.js frontend application
+│   ├── src/
+│   │   ├── app/             # Next.js 15 app directory
+│   │   ├── components/      # React components
+│   │   └── types/           # TypeScript type definitions
+│   ├── public/              # Static assets
+│   └── package.json         # npm dependencies
+└── README.md               # This file
+```

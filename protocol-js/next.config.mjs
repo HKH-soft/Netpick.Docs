@@ -5,6 +5,10 @@ import { rehypePlugins } from './src/mdx/rehype.mjs'
 import { remarkPlugins } from './src/mdx/remark.mjs'
 import withSearch from './src/mdx/search.mjs'
 
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
+
 const withMDX = nextMDX({
   options: {
     remarkPlugins,
@@ -16,10 +20,8 @@ const withMDX = nextMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  experimental: {
-    outputFileTracingIncludes: {
-      '/**/*': ['./src/app/**/*.mdx'],
-    },
+  outputFileTracingIncludes: {
+    '/**/*': ['./src/app/**/*.mdx'],
   },
 }
 

@@ -2,7 +2,7 @@ import { slugifyWithCounter } from '@sindresorhus/slugify'
 import * as acorn from 'acorn'
 import { toString } from 'mdast-util-to-string'
 import { mdxAnnotations } from 'mdx-annotations'
-import shiki from 'shiki'
+import { createHighlighter, createCssVariablesTheme, bundledLanguages } from 'shiki'
 import { visit } from 'unist-util-visit'
 
 function rehypeParseCodeBlocks() {
@@ -21,8 +21,13 @@ let highlighter
 
 function rehypeShiki() {
   return async (tree) => {
-    highlighter =
-      highlighter ?? (await shiki.getHighlighter({ theme: 'css-variables' }))
+    if (!highlighter) {
+      const theme = createCssVariablesTheme({ name: 'css-variables', variablePrefix: '--shiki-' })
+      highlighter = await createHighlighter({
+        themes: [theme],
+        langs: Object.values(bundledLanguages)
+      })
+    }
 
     visit(tree, 'element', (node) => {
       if (node.tagName === 'pre' && node.children[0]?.tagName === 'code') {
@@ -32,12 +37,12 @@ function rehypeShiki() {
         node.properties.code = textNode.value
 
         if (node.properties.language) {
-          let tokens = highlighter.codeToThemedTokens(
+          let tokens = highlighter.codeToTokens(
             textNode.value,
-            node.properties.language,
+            { lang: node.properties.language, theme: 'css-variables' }
           )
 
-          textNode.value = shiki.renderToHtml(tokens, {
+          textNode.value = renderToHtml(tokens.tokens, {
             elements: {
               pre: ({ children }) => children,
               code: ({ children }) => children,
@@ -48,6 +53,27 @@ function rehypeShiki() {
       }
     })
   }
+}
+
+function renderToHtml(lines, options) {
+  let html = ''
+  for (const line of lines) {
+    let lineHtml = ''
+    for (const token of line) {
+      const style = `color: ${token.color}`
+      lineHtml += `<span style="${style}">${token.content
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')}</span>`
+    }
+    if (options.elements?.line) {
+      html += options.elements.line({ children: lineHtml })
+    } else {
+      html += lineHtml + '\n'
+    }
+  }
+  return html
 }
 
 function rehypeSlugify() {

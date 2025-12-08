@@ -1,46 +1,58 @@
-# Protocol
+# WikiPick
 
-Protocol is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+The central documentation hub for all Netpick's projects.
 
-## Getting started
+## 🚀 About The Project
 
-To get started with this template, first install the npm dependencies:
+This project serves as the comprehensive documentation site for Netpick's ecosystem. It is built with Next.js, Tailwind CSS, and MDX to provide a beautiful and fast reading experience.
 
-```bash
-npm install
-```
+### Built With
 
-Next, run the development server:
+*   [Next.js](https://nextjs.org/)
+*   [React](https://reactjs.org/)
+*   [Tailwind CSS](https://tailwindcss.com/)
+*   [MDX](https://mdxjs.com/)
 
-```bash
-npm run dev
-```
+## 🏁 Getting Started
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+To get a local copy up and running, follow these simple steps.
 
-## Customizing
+### Prerequisites
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+*   Node.js 18+
+*   npm or yarn
 
-## Global search
+### Installation
 
-This template includes a global search that's powered by the [FlexSearch](https://github.com/nextapps-de/flexsearch) library. It's available by clicking the search input or by using the `⌘K` shortcut.
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/HKH-soft/Netpick.Docs.git
+    ```
+2.  Install NPM packages
+    ```sh
+    cd protocol-js
+    npm install
+    ```
+3.  Start the development server
+    ```sh
+    npm run dev
+    ```
+## 🤝 Contributing
 
-This feature requires no configuration, and works out of the box by automatically scanning your documentation pages to build its index. You can adjust the search parameters by editing the `/src/mdx/search.mjs` file.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-## License
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+## 📝 License
 
-## Learn more
+Distributed under the MIT License. See `LICENSE` for more information.
 
-To learn more about the technologies used in this site template, see the following resources:
+## 📧 Contact
 
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
-- [Framer Motion](https://www.framer.com/docs/) - the official Framer Motion documentation
-- [MDX](https://mdxjs.com/) - the official MDX documentation
-- [Algolia Autocomplete](https://www.algolia.com/doc/ui-libraries/autocomplete/introduction/what-is-autocomplete/) - the official Algolia Autocomplete documentation
-- [FlexSearch](https://github.com/nextapps-de/flexsearch) - the official FlexSearch documentation
-- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction) - the official Zustand documentation
+Hossein - [hkh.soft.eng@gmail.com](mailto:hkh.soft.eng@gmail.com)
+
+Project Link: [https://github.com/HKH-soft/Netpick.Docs](https://github.com/HKH-soft/Netpick.Docs)
