@@ -7,6 +7,7 @@ import { remark } from 'remark'
 import remarkMdx from 'remark-mdx'
 import { filter } from 'unist-util-filter'
 import { SKIP, visit } from 'unist-util-visit'
+import * as acorn from 'acorn'
 
 const processor = remark().use(remarkMdx).use(extractSections)
 const slugify = slugifyWithCounter()
@@ -41,13 +42,32 @@ function extractSections() {
   }
 }
 
-// Extract sections export from MDX file content
+// Extract sections export from MDX file content using acorn parser
 function extractSectionsExport(mdxContent) {
-  const sectionsMatch = mdxContent.match(/export const sections = (\[[\s\S]*?\])/);
+  const sectionsMatch = mdxContent.match(/export const sections = (\[[\s\S]*?\n\])/);
   if (sectionsMatch) {
     try {
-      // Use eval in a safe context - only during build time
-      return eval(sectionsMatch[1]);
+      // Parse as JavaScript expression using acorn
+      const parsed = acorn.parseExpressionAt(sectionsMatch[1], 0, { ecmaVersion: 2020 });
+      
+      // Convert AST to plain JavaScript object
+      function astToValue(node) {
+        if (node.type === 'ArrayExpression') {
+          return node.elements.map(el => astToValue(el));
+        } else if (node.type === 'ObjectExpression') {
+          const obj = {};
+          node.properties.forEach(prop => {
+            const key = prop.key.name || prop.key.value;
+            obj[key] = astToValue(prop.value);
+          });
+          return obj;
+        } else if (node.type === 'Literal') {
+          return node.value;
+        }
+        return null;
+      }
+      
+      return astToValue(parsed);
     } catch (e) {
       console.warn('Failed to parse sections export:', e);
       return [];
