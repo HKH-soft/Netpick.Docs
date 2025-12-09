@@ -7,6 +7,7 @@ import { remark } from 'remark'
 import remarkMdx from 'remark-mdx'
 import { filter } from 'unist-util-filter'
 import { SKIP, visit } from 'unist-util-visit'
+import * as acorn from 'acorn'
 
 const processor = remark().use(remarkMdx).use(extractSections)
 const slugify = slugifyWithCounter()
@@ -41,6 +42,40 @@ function extractSections() {
   }
 }
 
+// Extract sections export from MDX file content using acorn parser
+function extractSectionsExport(mdxContent) {
+  const sectionsMatch = mdxContent.match(/export const sections = (\[[\s\S]*?\n\])/);
+  if (sectionsMatch) {
+    try {
+      // Parse as JavaScript expression using acorn
+      const parsed = acorn.parseExpressionAt(sectionsMatch[1], 0, { ecmaVersion: 2020 });
+      
+      // Convert AST to plain JavaScript object
+      function astToValue(node) {
+        if (node.type === 'ArrayExpression') {
+          return node.elements.map(el => astToValue(el));
+        } else if (node.type === 'ObjectExpression') {
+          const obj = {};
+          node.properties.forEach(prop => {
+            const key = prop.key.name || prop.key.value;
+            obj[key] = astToValue(prop.value);
+          });
+          return obj;
+        } else if (node.type === 'Literal') {
+          return node.value;
+        }
+        return null;
+      }
+      
+      return astToValue(parsed);
+    } catch (e) {
+      console.warn('Failed to parse sections export:', e);
+      return [];
+    }
+  }
+  return [];
+}
+
 async function generateSearchIndex() {
   console.log('Generating search index...')
   let appDir = path.resolve('./src/app')
@@ -62,4 +97,24 @@ async function generateSearchIndex() {
   console.log(`Search index written to ${outputPath}`)
 }
 
+async function generateAllSections() {
+  console.log('Generating allSections data...')
+  let appDir = path.resolve('./src/app')
+  let files = glob.sync('**/*.mdx', { cwd: appDir })
+  
+  let allSections = {}
+  
+  files.forEach((file) => {
+    let url = '/' + file.replace(/(^|\/)page\.mdx$/, '')
+    let mdx = fs.readFileSync(path.join(appDir, file), 'utf8')
+    let sections = extractSectionsExport(mdx)
+    allSections[url] = sections
+  })
+
+  const outputPath = path.resolve('./src/mdx/allSections.json')
+  fs.writeFileSync(outputPath, JSON.stringify(allSections, null, 2))
+  console.log(`All sections data written to ${outputPath}`)
+}
+
 generateSearchIndex()
+generateAllSections()

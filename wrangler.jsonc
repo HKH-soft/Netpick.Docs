@@ -7,7 +7,7 @@
     {
       "pattern": "wiki.netpick.ir",
       "custom_domain": true
-    },
+    }
   ],
   "compatibility_flags": [
     "nodejs_compat",

@@ -151,7 +151,7 @@
           "Create a PostgreSQL database named mailmine",
           "Update Backend/src/main/resources/application.yml with your database credentials",
           "Flyway migrations will run automatically on startup",
-          "Access the App\r\nOpen your browser and navigate to http://localhost:3000."
+          "Access the App\nOpen your browser and navigate to http://localhost:3000."
         ]
       ],
       [
