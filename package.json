@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/build-search.mjs && next dev --webpack",
-    "build": "node scripts/build-search.mjs && next build --webpack",
+    "build": "node scripts/build-search.mjs && next build --webpack && npx opennextjs-cloudflare build --skipNextBuild",
     "start": "next start",
     "lint": "next lint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
