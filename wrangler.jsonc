@@ -3,6 +3,12 @@
   "main": ".open-next/worker.js",
   "name": "wikipick-docs",
   "compatibility_date": "2024-12-30",
+  "routes": [
+    {
+      "pattern": "wiki.netpick.ir",
+      "custom_domain": true
+    },
+  ],
   "compatibility_flags": [
     "nodejs_compat",
     "global_fetch_strictly_public"

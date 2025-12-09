@@ -1,3 +1,5 @@
+'use client'
+
 import FlexSearch from 'flexsearch'
 import data from './search.json'
 
