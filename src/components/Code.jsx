@@ -126,9 +126,11 @@ function CodePanelHeader({ tag, label }) {
 }
 
 function CodePanel({ children, tag, label, code }) {
-  let child = Children.only(children)
+  let child = isValidElement(children)
+    ? children
+    : Children.toArray(children).find(isValidElement)
 
-  if (isValidElement(child)) {
+  if (child) {
     tag = child.props.tag ?? tag
     label = child.props.label ?? label
     code = child.props.code ?? code

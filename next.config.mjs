@@ -4,9 +4,9 @@ import { recmaPlugins } from './src/mdx/recma.mjs'
 import { rehypePlugins } from './src/mdx/rehype.mjs'
 import { remarkPlugins } from './src/mdx/remark.mjs'
 
-// import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
-// initOpenNextCloudflareForDev();
+initOpenNextCloudflareForDev();
 
 const withMDX = nextMDX({
   options: {
