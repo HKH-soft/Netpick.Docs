@@ -41,6 +41,21 @@ function extractSections() {
   }
 }
 
+// Extract sections export from MDX file content
+function extractSectionsExport(mdxContent) {
+  const sectionsMatch = mdxContent.match(/export const sections = (\[[\s\S]*?\])/);
+  if (sectionsMatch) {
+    try {
+      // Use eval in a safe context - only during build time
+      return eval(sectionsMatch[1]);
+    } catch (e) {
+      console.warn('Failed to parse sections export:', e);
+      return [];
+    }
+  }
+  return [];
+}
+
 async function generateSearchIndex() {
   console.log('Generating search index...')
   let appDir = path.resolve('./src/app')
@@ -62,4 +77,24 @@ async function generateSearchIndex() {
   console.log(`Search index written to ${outputPath}`)
 }
 
+async function generateAllSections() {
+  console.log('Generating allSections data...')
+  let appDir = path.resolve('./src/app')
+  let files = glob.sync('**/*.mdx', { cwd: appDir })
+  
+  let allSections = {}
+  
+  files.forEach((file) => {
+    let url = '/' + file.replace(/(^|\/)page\.mdx$/, '')
+    let mdx = fs.readFileSync(path.join(appDir, file), 'utf8')
+    let sections = extractSectionsExport(mdx)
+    allSections[url] = sections
+  })
+
+  const outputPath = path.resolve('./src/mdx/allSections.json')
+  fs.writeFileSync(outputPath, JSON.stringify(allSections, null, 2))
+  console.log(`All sections data written to ${outputPath}`)
+}
+
 generateSearchIndex()
+generateAllSections()

@@ -1,0 +1,53 @@
+{
+  "/": [
+    {
+      "title": "About Netpick",
+      "id": "about-netpick"
+    },
+    {
+      "title": "Modules",
+      "id": "modules"
+    }
+  ],
+  "/mailmine": [
+    {
+      "title": "Introduction",
+      "id": "introduction"
+    },
+    {
+      "title": "Key Features",
+      "id": "key-features"
+    },
+    {
+      "title": "Built With",
+      "id": "built-with"
+    }
+  ],
+  "/other-projects": [],
+  "/mailmine/api-reference": [
+    {
+      "title": "Overview",
+      "id": "overview"
+    }
+  ],
+  "/mailmine/architecture": [
+    {
+      "title": "Project Structure",
+      "id": "project-structure"
+    }
+  ],
+  "/mailmine/getting-started": [
+    {
+      "title": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "title": "Installation",
+      "id": "installation"
+    },
+    {
+      "title": "Usage",
+      "id": "usage"
+    }
+  ]
+}

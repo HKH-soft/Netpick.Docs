@@ -1,5 +1,7 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
+export const runtime = 'edge';
+
 export async function POST(request) {
   try {
     const { pathname, helpful } = await request.json()
